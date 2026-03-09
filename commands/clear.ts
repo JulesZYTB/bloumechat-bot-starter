@@ -1,5 +1,11 @@
 import { Command } from "../types";
 
+/**
+ * Command to clear a specific number of messages.
+ * @param client - The BloumeChat client instance.
+ * @param message - The message object.
+ * @param args - The arguments passed to the command.
+ */
 export const command: Command = {
     name: "clear",
     description: "Clears a specific number of messages.",

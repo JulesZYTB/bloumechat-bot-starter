@@ -1,6 +1,11 @@
-import { Message } from "../lib/sdk/structures/Message";
-import { BloumeChat } from "../lib/sdk/bloumechat";
+import { Message, BloumeChat } from "bloumechat";
 
+/**
+ * Interface pour les commandes du bot
+ *
+ * @export
+ * @interface Command
+ */
 export interface Command {
     name: string;
     description: string;

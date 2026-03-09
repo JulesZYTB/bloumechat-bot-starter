@@ -1,6 +1,16 @@
 import { BloumeChat, Message } from "bloumechat";
 import { commands } from "../index";
 
+/**
+ * Event handler for the 'messageCreate' event.
+ * This event is triggered when a new message is created in a server.
+ *
+ * @export
+ * @default
+ * @type {object}
+ * @property {string} name - The name of the event.
+ * @property {function(BloumeChat, Message): Promise<void>} execute - The function to execute when the event is triggered.
+ */
 export default {
     name: "message",
     async execute(client: BloumeChat, message: Message) {

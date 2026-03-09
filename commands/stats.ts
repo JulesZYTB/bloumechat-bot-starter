@@ -1,5 +1,11 @@
 import { Command } from "../types";
 
+/**
+ * Command to display bot statistics.
+ * @param client - The BloumeChat client instance.
+ * @param message - The message object.
+ * @param args - The arguments passed to the command.
+ */
 export const command: Command = {
     name: "stats",
     description: "Replies with the bot's current statistics.",

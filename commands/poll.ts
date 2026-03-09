@@ -1,4 +1,11 @@
 import { Command } from "../types";
+
+/**
+ * Command to create a poll and wait for reactions.
+ * @param client - The BloumeChat client instance.
+ * @param message - The message object.
+ * @param args - The arguments passed to the command.
+ */
 export const command: Command = {
     name: "poll",
     description: "Creates a yes/no poll and waits for reactions.",

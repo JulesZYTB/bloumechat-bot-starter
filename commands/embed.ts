@@ -1,6 +1,12 @@
 import { EmbedBuilder } from "bloumechat";
 import { Command } from "../types";
 
+/**
+ * Command to send an embed message.
+ * @param client - The BloumeChat client instance.
+ * @param message - The message object.
+ * @param args - The arguments passed to the command.
+ */
 export const command: Command = {
     name: "embed",
     description: "Sends a stunning Embed element.",

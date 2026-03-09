@@ -1,6 +1,12 @@
 import { PermissionFlags } from "bloumechat";
 import { Command } from "../types";
 
+/**
+ * Command to create a new role.
+ * @param client - The BloumeChat client instance.
+ * @param message - The message object.
+ * @param args - The arguments passed to the command.
+ */
 export const command: Command = {
     name: "createrole",
     description: "Creates a new role.",
