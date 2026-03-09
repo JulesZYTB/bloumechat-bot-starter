@@ -211,6 +211,7 @@ This is the application's entry point.
 ### 📂 `commands/` (Available Commands)
 The bot includes various example commands to demonstrate the SDK's power:
 
+- **`!avatar`**: Displays your user profile picture natively built into a neat Embed map.
 - **`!ban [userId]`**: Bans a user. Demonstrates how to fetch a member using `client.members.fetch()` and trigger the `ban()` action.
 - **`!clear [number]`**: Deletes up to 100 recent messages at once. Demonstrates checking user permissions (`MANAGE_MESSAGES`) dynamically and bulk-deleting with `channel.bulkDelete()`.
 - **`!counter`**: A statistics counter utility command demonstration.
@@ -220,8 +221,13 @@ The bot includes various example commands to demonstrate the SDK's power:
 - **`!perms`**: Utility to test and modify target user permissions dynamically.
 - **`!ping`**: A simple responsiveness test ("Pong!").
 - **`!poll [question]`**: Demonstrates the flexibility of reactions. It posts a question, auto-reacts, halts execution via `awaitReactions`, tallies results, and wipes the reactions.
+- **`!say [text]`**: The bot echoes the specified string and actively deletes the user's execution trigger.
+- **`!serverinfo`**: Yields essential server identification aspects (name, ID, owner) formatted directly from cache.
 - **`!stats`**: Yields operational bot metrics (server cache size, WebSocket connectivity, status).
+- **`!suggest [idea]`**: Deletes the user's message and creates a beautifully formatted suggestion Embed with their username and profile picture, then automatically adds 👍 and 👎 reactions for community voting.
 - **`!test`**: A loose command crafted for experimenting with SDK interactions.
+- **`!ticket`**: Automatically fetches (or creates) a "Tickets" category using the SDK's Category features. Then, it generates a private text channel explicitly overwriting permissions so that only the command author and Administrators can view it. Finally, it pings the user inside.
+- **`!userinfo`**: Produces a customized Embed displaying internal runtime traits about you (ID, Tag, Account type, status).
 
 ### 📂 `types/`
 - **`index.ts`**: Contains the TypeScript `Command` interface to assure that all incoming commands cleanly align with the required standard schema (`name`, `description`, `execute`).

@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "bloumechat": "^1.0.5",
+    "bloumechat": "^1.0.10",
     "dotenv": "^17.3.1",
     "fs": "^0.0.1-security",
     "path": "^0.12.7"

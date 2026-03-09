@@ -212,6 +212,7 @@ C'est le point d'entrée de l'application.
 ### 📂 `commands/` (Commandes Disponibles)
 Le bot inclut plusieurs commandes exemples pour démontrer la puissance du SDK :
 
+- **`!avatar`** : Affiche votre photo de profil en grand format grâce au constructeur d'Embed.
 - **`!ban [userId]`** : Banni un membre du serveur. Démontre l'utilisation de `client.members.fetch()` et la méthode d'action `ban()`.
 - **`!clear [nombre]`** : Supprime de 1 à 100 messages d'un coup. Démontre la vérification dynamique de permissions (via les accès `MANAGE_MESSAGES`) et `channel.bulkDelete()`.
 - **`!counter`** : Système de compteur pour le serveur.
@@ -221,8 +222,13 @@ Le bot inclut plusieurs commandes exemples pour démontrer la puissance du SDK :
 - **`!perms`** : Permet de manipuler ou tester le système de permissions d'un utilisateur cible.
 - **`!ping`** : Une simple commande de test ("Pong !").
 - **`!poll [question]`** : Démontre la flexibilité des réactions. Le bot pose une question, ajoute des réactions automatiquement, attend les réponses avec `awaitReactions` puis affiche les résultats.
+- **`!say [texte]`** : Fait répéter au bot la phrase indiquée et efface votre message initial.
+- **`!serverinfo`** : Rassemble et affiche les informations du serveur actuel (nom, ID du serveur, propriétaire).
 - **`!stats`** : Affiche les statistiques basiques du bot (nombre de serveurs, latence WebSocket, statut).
+- **`!suggest [idée]`** : Supprime le message de l'utilisateur et crée un magnifique Embed de suggestion avec son pseudo et sa photo de profil, puis ajoute automatiquement les réactions 👍 et 👎.
 - **`!test`** : Commande pour tester l'envoi de divers événements au SDK.
+- **`!ticket`** : Recherche (ou crée automatiquement) une catégorie "Tickets" via `fetchCategories` et `createCategory`, puis crée un salon privé individuel pour l'utilisateur en ne l'autorisant que lui et les administrateurs à le voir grâce aux `permissionOverwrites`. Le bot le tag alors à l'intérieur.
+- **`!userinfo`** : Affiche vos propres informations d'utilisateur BloumeChat (Tag, ID, type de compte, statut) sous forme d'Embed.
 
 ### 📂 `types/`
 - **`index.ts`** : Importation de l'interface TypeSript `Command` pour s'assurer que toutes les commandes créées respectent ce schéma (`name`, `description`, `execute`).
