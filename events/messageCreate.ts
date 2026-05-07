@@ -11,13 +11,17 @@ import { commands } from "../index";
  * @property {string} name - The name of the event.
  * @property {function(BloumeChat, Message): Promise<void>} execute - The function to execute when the event is triggered.
  */
-export default {
-    name: "message",
-    async execute(client: BloumeChat, message: Message) {
-        // Ignore bot messages if needed (currently commented out)
-        // if (message.author.bot) return;
+let executionCount = 0;
 
-        console.log(`📩 [${message.channel.id}] ${message.author.username}: ${message.content}`);
+export default {
+    name: "messageCreate",
+    async execute(client: BloumeChat, message: Message) {
+        executionCount++;
+        // Ignore bot messages
+        if (message.author.bot) return;
+
+        const os = require("os");
+        console.log(`[EXEC #${executionCount}] [${os.hostname()}] [PID: ${process.pid}] 📩 [${message.channel.id}] ${message.author.username}: ${message.content}`);
 
         const prefix = "!";
         if (!message.content.startsWith(prefix)) return;

@@ -21,11 +21,17 @@ const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith("
 
 for (const file of commandFiles) {
     const filePath = path.join(commandsPath, file);
-    const { command } = require(filePath);
-    if ("name" in command && "execute" in command) {
-        commands.set(command.name, command);
-    } else {
-        console.warn(`[WARNING] The command at ${filePath} is missing a required "name" or "execute" property.`);
+    try {
+        const module = require(filePath);
+        const command = module.command || module.default;
+
+        if (command && "name" in command && "execute" in command) {
+            commands.set(command.name, command);
+        } else {
+            console.warn(`[WARNING] The command at ${file} is missing a required "name" or "execute" property, or doesn't export 'command'.`);
+        }
+    } catch (error) {
+        console.error(`❌ Failed to load command ${file}:`, error);
     }
 }
 
@@ -35,11 +41,22 @@ const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith(".ts"
 
 for (const file of eventFiles) {
     const filePath = path.join(eventsPath, file);
-    const event = require(filePath).default;
-    if (event.once) {
-        client.once(event.name, (...args) => event.execute(client, ...args));
-    } else {
-        client.on(event.name, (...args) => event.execute(client, ...args));
+    try {
+        const module = require(filePath);
+        const event = module.default || module.event || module;
+
+        if (event && event.name && typeof event.execute === "function") {
+            console.log(`[DEBUG] Registering event: ${event.name} from ${file}`);
+            if (event.once) {
+                client.once(event.name, (...args) => event.execute(client, ...args));
+            } else {
+                client.on(event.name, (...args) => event.execute(client, ...args));
+            }
+        } else {
+            console.warn(`[WARNING] The event at ${file} is invalid or missing 'name'/'execute'.`);
+        }
+    } catch (error) {
+        console.error(`❌ Failed to load event ${file}:`, error);
     }
 }
 
