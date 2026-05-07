@@ -1,22 +1,29 @@
-import { Message, EmbedBuilder } from "bloumechat";
+import { Command } from "../types";
+import { EmbedBuilder } from "bloumechat";
 
-export const execute = async (message: Message, args: string[]) => {
-    const embed = new EmbedBuilder()
-        .setTitle(`👤 Infos de l'utilisateur : ${message.author.username}`)
-        .setColor("#1ABC9C")
-        .addFields(
-            { name: "Nom d'utilisateur", value: message.author.username, inline: true },
-            { name: "Tag", value: `#${message.author.tag}`, inline: true },
-            { name: "ID", value: `\`${message.author.id}\``, inline: false },
-            { name: "Bot ?", value: message.author.bot ? "🤖 Oui" : "👤 Non", inline: true },
-            { name: "Statut Actuel", value: message.author.status, inline: true }
-        )
-        .setFooter({ text: "Demandé par " + message.author.username })
-        .setTimestamp();
+export const command: Command = {
+    name: "userinfo",
+    description: "Affiche les informations d'un utilisateur.",
+    async execute(client, message, args) {
+        const target = message.author; // For now just the author, could be expanded to args[0]
 
-    if (message.author.avatar) {
-        embed.setAuthor({ name: message.author.username, iconUrl: message.author.avatar });
+        const embed = new EmbedBuilder()
+            .setTitle(`👤 Infos de l'utilisateur : ${target.username}`)
+            .setColor("#1ABC9C")
+            .addFields(
+                { name: "Nom d'utilisateur", value: target.username, inline: true },
+                { name: "Tag", value: `#${target.tag}`, inline: true },
+                { name: "ID", value: `\`${target.id}\``, inline: false },
+                { name: "Bot ?", value: target.bot ? "🤖 Oui" : "👤 Non", inline: true },
+                { name: "Statut Actuel", value: target.status, inline: true }
+            )
+            .setFooter({ text: "BloumeChat Moderation" })
+            .setTimestamp();
+
+        if (target.avatar) {
+            embed.setAuthor({ name: target.username, iconUrl: target.avatar });
+        }
+
+        await message.reply("", [embed]);
     }
-
-    await message.reply("", [embed]);
 };
